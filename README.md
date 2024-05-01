@@ -63,6 +63,8 @@ make mountain_car && ./mountain_car 0.01 60 4 6 1
 ```
 Where 0.01 is the width of the initial set, 60 is the total steps that need to be verified, 4 is the order of Bernstein Polynomial, 6 is the order of the Taylor Model.
 One safe and unsafe verification results are displayed below.
+![alt text](/MC_after_POLAR/2Successful_verificaiton_plot.png)
+
 
 ## Confusion matrix calculation
 Combining the results from the POLAR and the groud truth from the first step, we can get the confusion matrix for true positive rate, false negative rate...
