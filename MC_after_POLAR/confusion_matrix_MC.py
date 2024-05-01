@@ -7,85 +7,76 @@ import os
 import re
 
 
-def extract_IP_reachable_point(folder_path):
-    #folder_path = "/home/UFAD/yuang.geng/yuang_research/Yuang_simulation/Yuang_simulation/reach_verification_multiLDCs/reach_verification"
-    # If the file name is "Yes_1.0500000.970000.txt"
-    safe_theta = []
-    safe_thetadot = []
-
-    for filename in os.listdir(folder_path):
-        if filename.endswith(".txt"):
-            # Extract the first 7 numbers
-            first_number = float(filename.split("_")[1][:7])
-            safe_theta.append(first_number)
-            # Extract the last 7 numbers
-            last_number = float(filename.split("_")[1][8:15])
-            safe_thetadot.append(last_number)
-    # np.savetxt('multi_safe_theta_verify.txt', safe_theta)
-    # np.savetxt('multi_safe_thetadot_verify.txt', safe_thetadot)
-
-    return safe_theta, safe_thetadot
-
-# folder_path = "/home/UFAD/yuang.geng/yuang_research/Yuang_simulation/organized_code/MC_after_POLAR/IP_POLAR_results/outputs_rebuttal_1-2/outputs/reach_verification"
+# def extract_IP_reachable_point(folder_path):
+#     #folder_path = "/home/UFAD/yuang.geng/yuang_research/Yuang_simulation/Yuang_simulation/reach_verification_multiLDCs/reach_verification"
+#
+#     # If the file name is "Yes_1.0500000.970000.txt"
+#     safe_theta = []
+#     safe_thetadot = []
+#
+#     for filename in os.listdir(folder_path):
+#         if filename.endswith(".txt"):
+#             # Extract the first 7 numbers
+#             first_number = float(filename.split("_")[1][:7])
+#             safe_theta.append(first_number)
+#             # Extract the last 7 numbers
+#             last_number = float(filename.split("_")[1][8:15])
+#             safe_thetadot.append(last_number)
+#     # np.savetxt('multi_safe_theta_verify.txt', safe_theta)
+#     # np.savetxt('multi_safe_thetadot_verify.txt', safe_thetadot)
+#
+#     return safe_theta, safe_thetadot
+#
+# folder_path = "/home/UFAD/yuang.geng/yuang_research/Yuang_simulation/Yuang_simulation/Mountain_car/verificaiton_results/1LDC_v00.07_p64_cp0.0249_100steps/reach_verification"
 # extract_safe_theta, extract_safe_thetadot = extract_IP_reachable_point(folder_path)
-# np.savetxt('IP_POLAR_results/IP_noise_verified_position_new.txt', extract_safe_theta)
-# np.savetxt('IP_POLAR_results/IP_noise_verified_velocity_new.txt', extract_safe_thetadot)
+#
+# np.savetxt('MC_1LDC_cp0.0249_safe_position_verify.txt', extract_safe_theta)
+# np.savetxt('MC_1LDC_cp0.0249_safe_velocity_verify.txt', extract_safe_thetadot)
 #
 #
-def extract_MC_reachable_point(folder_path):
-    safe_theta = []
-    safe_thetadot = []
-
-    for filename in os.listdir(folder_path):
-        print(f"Checking filename: {filename}")  # Debug print
-        if filename.endswith(".txt"):
-            matches = re.findall(r"(-?\d+\.\d+)", filename)
-            print(f"Matches found: {matches}")  # Debug print
-
-            if len(matches) == 2:
-                theta, thetadot = map(float, matches)
-                safe_theta.append(theta)
-                safe_thetadot.append(thetadot)
-            else:
-                first_number = float(filename.split("_")[1][:7])
-                safe_theta.append(first_number)
-                # Extract the last 7 numbers
-                last_number = float(filename.split("_")[1][8:15])
-                safe_thetadot.append(last_number)
-                print("len!=2",first_number, last_number)
-
-    return safe_theta, safe_thetadot
-
-def extract_values(folder_path):
-    safe_theta = []
-    safe_thetadot = []
-    # Search for float values in the filename
-    for filename in os.listdir(folder_path):
-        matches = re.findall(r"(-?\d+\.\d+)", filename)
-
-        if len(matches) == 2:
-            value1, value2 = map(float, matches)
-            safe_theta.append(value1)
-            safe_thetadot.append(value2)
-            return safe_theta, safe_thetadot
-        else:
-            return None, None
-
-# folder_path = "MC_POLAR_results/reach_verification_traj1/reach_verification"
-# extract_safe_theta, extract_safe_thetadot = extract_MC_reachable_point(folder_path)
-# folder_path2 = "MC_POLAR_results/reach_verification_traj2/reach_verification"
-# extract_safe_theta2, extract_safe_thetadot2 = extract_MC_reachable_point(folder_path2)
-# extract_safe_theta = np.concatenate((extract_safe_theta, extract_safe_theta2), axis = 0)
-# extract_safe_thetadot = np.concatenate((extract_safe_thetadot, extract_safe_thetadot2), axis = 0)
-# np.savetxt('MC_POLAR_results/MC60_LDCs_traj_safe_position_verify.txt', extract_safe_theta)
-# np.savetxt('MC_POLAR_results/MC60_LDCs_traj_safe_velocity_verify.txt', extract_safe_thetadot)
-
-#extract 1LDC action_based verified safe points
-# folder_path_1LDC_AB = "MC_POLAR_results/reach_verification_60AB_-0.5-0.4/reach_verification"
-# extract_safe_theta, extract_safe_thetadot = extract_MC_reachable_point(folder_path_1LDC_AB)
-# np.savetxt('MC_POLAR_results/MC60_LDCs_AB_safe_position_verify.txt', extract_safe_theta)
-# np.savetxt('MC_POLAR_results/MC60_LDCs_AB_safe_velocity_verify.txt', extract_safe_thetadot)
-
+# def extract_reachable_point(folder_path):
+#     safe_theta = []
+#     safe_thetadot = []
+#
+#     for filename in os.listdir(folder_path):
+#         print(f"Checking filename: {filename}")  # Debug print
+#         if filename.endswith(".txt"):
+#             matches = re.findall(r"(-?\d+\.\d+)", filename)
+#             print(f"Matches found: {matches}")  # Debug print
+#
+#             if len(matches) == 2:
+#                 theta, thetadot = map(float, matches)
+#                 safe_theta.append(theta)
+#                 safe_thetadot.append(thetadot)
+#             else:
+#                 first_number = float(filename.split("_")[1][:7])
+#                 safe_theta.append(first_number)
+#                 # Extract the last 7 numbers
+#                 last_number = float(filename.split("_")[1][8:15])
+#                 safe_thetadot.append(last_number)
+#                 print("len!=2",first_number, last_number)
+#
+#     return safe_theta, safe_thetadot
+# def extract_values(folder_path):
+#     safe_theta = []
+#     safe_thetadot = []
+#     # Search for float values in the filename
+#     for filename in os.listdir(folder_path):
+#         matches = re.findall(r"(-?\d+\.\d+)", filename)
+#
+#         if len(matches) == 2:
+#             value1, value2 = map(float, matches)
+#             safe_theta.append(value1)
+#             safe_thetadot.append(value2)
+#             return safe_theta, safe_thetadot
+#         else:
+#             return None, None
+# folder_path = "/home/UFAD/yuang.geng/yuang_research/Yuang_simulation/Yuang_simulation/Mountain_car/verificaiton_results/1LDC_v00.07_p64_cp0.0249_100steps/reach_verification"
+# extract_safe_theta, extract_safe_thetadot = extract_reachable_point(folder_path)
+# np.savetxt('MC_1LDC_cp0.0249_safe_position_verify.txt', extract_safe_theta)
+# np.savetxt('MC_1LDC_cp0.0249_safe_velocity_verify.txt', extract_safe_thetadot)
+#
+#
 # plt.scatter(extract_safe_theta, extract_safe_thetadot, color='blue', marker='o', label='Sample Data')
 # # Add title and labels
 # plt.title('Scatter Plot for verification')
@@ -132,12 +123,11 @@ thetadot_filepath = '/home/UFAD/yuang.geng/yuang_research/Yuang_simulation/Yuang
 
 # Make a function for the confusion matrix
 # Step 1: Load the Data
-# #This is the one_LDC action-based conformal prediction with 60 steps
-predicted_x = np.loadtxt('MC_POLAR_results/MC60_LDCs_AB_safe_position_verify.txt')
-predicted_y = np.loadtxt('MC_POLAR_results/MC60_LDCs_AB_safe_velocity_verify.txt')
-
-predicted_x = predicted_x[1:80]
-predicted_y = predicted_y[1:80]
+#This is the one_LDC action-based conformal prediction
+predicted_x = np.loadtxt('/home/UFAD/yuang.geng/yuang_research/Yuang_simulation/Yuang_simulation/Mountain_car/verificaiton_results/1LDC_v00.07_p64_cp0.0249_100steps/MC_1LDC_cp0.0249_safe_position_verify.txt')
+predicted_y = np.loadtxt('/home/UFAD/yuang.geng/yuang_research/Yuang_simulation/Yuang_simulation/Mountain_car/verificaiton_results/1LDC_v00.07_p64_cp0.0249_100steps/MC_1LDC_cp0.0249_safe_velocity_verify.txt')
+predicted_x = predicted_x[100:250]
+predicted_y = predicted_y[100:250]
 
 predicted_points = np.column_stack((predicted_x, predicted_y))
 
@@ -151,51 +141,19 @@ predicted_points = np.column_stack((predicted_x, predicted_y))
 # predicted_points = np.column_stack((predicted_x, predicted_y))
 
 #this is the multiple LDCs with trajectory-based
-# predicted_x = np.loadtxt('/home/UFAD/yuang.geng/yuang_research/Yuang_simulation/Yuang_simulation/Mountain_car/MC_Multi_trajectory_cp_safe_pos_verify.txt')
-# predicted_y = np.loadtxt('/home/UFAD/yuang.geng/yuang_research/Yuang_simulation/Yuang_simulation/Mountain_car/MC_Multi_trajectory_cp_safe_velocity_verify.txt')
+# predicted_x = np.loadtxt('MC_Multi_trajectory_cp_safe_pos_verify.txt')
+# predicted_y = np.loadtxt('MC_Multi_trajectory_cp_safe_velocity_verify.txt')
 # predicted_points = np.column_stack((predicted_x, predicted_y))
-#
+
 # raw_all_predicted_points = np.vstack((predicted_x, predicted_y))
-# filter_small_range = raw_all_predicted_points[:, raw_all_predicted_points[1, :] <= 0.05]
-# predicted_x = filter_small_range[0, :]
-# predicted_y = filter_small_range[1, :]
-#
-# predicted_points = np.column_stack((predicted_x, predicted_y))
+# fillter_small_range = raw_all_predicted_points[:, raw_all_predicted_points[1, :] <= 0.05]
+# predicted_x = fillter_small_range[0, :]
+# predicted_y = fillter_small_range[1, :]
 #
 # max_velocity = max(predicted_y)
 # min_velocity = min(predicted_y)
 # max_position = max(predicted_x)
 # min_position = min(predicted_x)
-
-
-# 60 steps MC with 10 LDCs with the action-based discrepancy [-0.6, -0.4]x[-0.01, 0.05]
-# predicted_x1 = np.loadtxt('MC_POLAR_results/MC60_LDCs_safe_position_verify.txt')
-# predicted_y1 = np.loadtxt('MC_POLAR_results/MC60_LDCs_safe_velocity_verify.txt')
-# predicted_x2 = np.loadtxt('MC_POLAR_results/MC60_LDCs_safe_position_verify_part2.txt')
-# predicted_y2 = np.loadtxt('MC_POLAR_results/MC60_LDCs_safe_velocity_verify_part2.txt')
-# predicted_x = np.concatenate((predicted_x1, predicted_x2), axis = 0)
-# predicted_y = np.concatenate((predicted_y1, predicted_y2), axis = 0)
-# predicted_points = np.column_stack((predicted_x, predicted_y))
-
-
-# 60 steps LDC with trajectory-based discrepancy
-# predicted_x = np.loadtxt('MC_POLAR_results/MC60_LDCs_traj_safe_position_verify.txt')
-# predicted_y = np.loadtxt('MC_POLAR_results/MC60_LDCs_traj_safe_velocity_verify.txt')
-#
-# predicted_points = np.column_stack((predicted_x, predicted_y))
-#
-# raw_all_predicted_points = np.vstack((predicted_x, predicted_y))
-# filter_small_range = raw_all_predicted_points[:, raw_all_predicted_points[1, :] <= 0.05]
-# predicted_x = filter_small_range[0, :]
-# predicted_y = filter_small_range[1, :]
-#
-# predicted_points = np.column_stack((predicted_x, predicted_y))
-#
-# max_velocity = max(predicted_y)
-# min_velocity = min(predicted_y)
-# max_position = max(predicted_x)
-# min_position = min(predicted_x)
-
 
 #Pure CP
 # predicted_x = np.loadtxt('PureCP_safe_position.txt')
@@ -234,6 +192,8 @@ predicted_points = np.column_stack((predicted_x, predicted_y))
 #wrong with predicted values
 
 
+
+
 #true_dataset1 = np.load('Mountain_car/ground_truth_safe_states_(vel:-0.07-0).npy')
 #rue_dataset2 = np.load('Mountain_car/ground_truth_safe_states_(vel:0-0.07).npy')
 #all_true_dataset = np.vstack((true_dataset1, true_dataset2))
@@ -250,32 +210,14 @@ predicted_points = np.column_stack((predicted_x, predicted_y))
 # all_true_dataset = np.vstack((true_dataset1, true_dataset2,true_dataset3))
 # total_population = (0.2/0.01) * (0.09/0.001)
 
-#here is the mountain car's ground truth [-0.6, -0.4]x[-0.02, 0.05]
-# true_dataset1 = np.load('/home/UFAD/yuang.geng/yuang_research/Yuang_simulation/Yuang_simulation/Mountain_car/new_100step_groundtruth/2ground_truth_safe_states_(-0.6, -0.5)_(vel:-0.02-0.05).npy')
-# true_dataset2 = np.load('/home/UFAD/yuang.geng/yuang_research/Yuang_simulation/Yuang_simulation/Mountain_car/new_100step_groundtruth/2ground_truth_safe_states_(-0.5, -0.4)_(vel:-0.02-0.05).npy')
-# all_true_dataset = np.vstack((true_dataset1, true_dataset2))
-# total_population = (0.2/0.01) * (0.07/0.001)
+true_dataset1 = np.load('/home/UFAD/yuang.geng/yuang_research/Yuang_simulation/Yuang_simulation/Mountain_car/new_100step_groundtruth/2ground_truth_safe_states_(-0.6, -0.5)_(vel:-0.02-0.05).npy')
+true_dataset2 = np.load('/home/UFAD/yuang.geng/yuang_research/Yuang_simulation/Yuang_simulation/Mountain_car/new_100step_groundtruth/2ground_truth_safe_states_(-0.5, -0.4)_(vel:-0.02-0.05).npy')
+all_true_dataset = np.vstack((true_dataset1, true_dataset2))
+total_population = (0.2/0.01) * (0.07/0.001)
 
-#here is the mountain car's ground truth 60 steps [-0.6, -0.5]x[-0.01, 0.05]
-# true_dataset1_1 = np.load('/home/UFAD/yuang.geng/yuang_research/Yuang_simulation/organized_code/MC_LDC_training/switch_60steps_all/ground_truth/gt_60_safe_(-0.6, -0.5)_(vel:-0.01-0.05).npy')
-# true_dataset2_1 = np.load('/home/UFAD/yuang.geng/yuang_research/Yuang_simulation/organized_code/MC_LDC_training/switch_60steps_all/ground_truth/gt_60_unsafe_(-0.6, -0.5)_(vel:-0.01-0.05).npy')
-# true_dataset1_2 = np.load('/home/UFAD/yuang.geng/yuang_research/Yuang_simulation/organized_code/MC_LDC_training/switch_60steps_all/ground_truth/gt_60_safe_(-0.5, -0.4)_(vel:-0.01-0.05).npy')
-# true_dataset2_2 = np.load('/home/UFAD/yuang.geng/yuang_research/Yuang_simulation/organized_code/MC_LDC_training/switch_60steps_all/ground_truth/gt_60_unsafe_(-0.5, -0.4)_(vel:-0.01-0.05).npy')
-# true_safe_pos = np.concatenate((true_dataset1_1, true_dataset1_2), axis=0)
-# true_safe_vel = np.concatenate((true_dataset2_1, true_dataset2_2), axis=0)
-
-# np.save('/home/UFAD/yuang.geng/yuang_research/Yuang_simulation/organized_code/MC_LDC_training/switch_60steps_all/ground_truth/gt_60_safe_(-0.6, -0.4)_(vel:-0.01-0.05).npy',true_safe_pos)
-# np.save('/home/UFAD/yuang.geng/yuang_research/Yuang_simulation/organized_code/MC_LDC_training/switch_60steps_all/ground_truth/gt_60_unsafe_(-0.6, -0.4)_(vel:-0.01-0.05).npy',true_safe_vel)
-
-
-true_safe = np.load('/home/UFAD/yuang.geng/yuang_research/Yuang_simulation/organized_code/MC_LDC_training/switch_60steps_all/ground_truth/gt_60_safe_(-0.6, -0.4)_(vel:-0.01-0.05).npy')
-true_unsafe= np.load('/home/UFAD/yuang.geng/yuang_research/Yuang_simulation/organized_code/MC_LDC_training/switch_60steps_all/ground_truth/gt_60_unsafe_(-0.6, -0.4)_(vel:-0.01-0.05).npy')
-all_true_dataset = np.vstack((true_safe, true_unsafe))
-total_population = (0.2/0.01) * (0.06/0.001)
 
 
 #true_data set: check the repetitive rows and delete in the array
-
 unique_rows, indices, counts = np.unique(all_true_dataset, axis=0, return_index=True, return_counts=True)
 repetitive_elements = unique_rows[counts > 1]
 repetitive_indices = indices[counts > 1]
@@ -289,6 +231,8 @@ true_x = filtered_all_true_data[:, 0]
 true_y = filtered_all_true_data[:, 1]
 
 #check all the predicted points are within the right region
+
+
 
 
 # Step 2: Define a Matching Criterion (e.g., Euclidean distance)
