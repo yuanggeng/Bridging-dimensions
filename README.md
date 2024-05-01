@@ -12,7 +12,28 @@ pip install -r requirements.txt
 ```
 Note that we use gym 0.21.0 in the cart pole case and for others, we apply gym 0.22.0. 
 
-Regarding the reachability analysis, download the VirtualBox and run the code inside. Here is the link: https://www.dropbox.com/scl/fi/ki122ofypp1x0tmq5nunn/ReachNNStar-test-2.ova?rlkey=a0l7raqkvpa87jaw98ygr1mme&st=xstj3k0l&dl=0 
+Regarding the reachability analysis, download the our VirtualBox with all dependencies. Here is the link: https://www.dropbox.com/scl/fi/ki122ofypp1x0tmq5nunn/ReachNNStar-test-2.ova?rlkey=a0l7raqkvpa87jaw98ygr1mme&st=xstj3k0l&dl=0 
+
+Otherwise, you can also download the dependency by yourself. System Requirements: Ubuntu 18.04, MATLAB 2016a or later
+Install dependencies through apt-get install
+```python
+sudo apt-get install m4 libgmp3-dev libmpfr-dev libmpfr-doc libgsl-dev gsl-bin bison flex gnuplot-x11 libglpk-dev gcc-8 g++-8 libopenmpi-dev libpthread-stubs0-dev
+```
+Then download the Flow*
+```python
+git clone https://github.com/chenxin415/flowstar.git
+```
+Compile flow star:
+```python
+cd flowstar/flowstar-toolbox
+make
+```
+Complie POALR:
+```python
+cd POLAR
+make
+```
+
 
 ## Get ground truth data from HDC and training data for LDC
 For state-image one-to-one matched training datasets, we collect the images from env. render() and store the corresponding states in the env.env.state in each step function. Moreover, we add the zero-mean Gaussian noise onto the state information for the noise-mapping training data set. For example, the arguments are number of data, steps, initial state1 begin, initial state1 end, initial state2 begin, initial state2 end.   
@@ -22,16 +43,23 @@ python MC_LDC_traing/MC_training_data.py 10000 60 -0.6 -0.4 0.01 0.05
 ```
 
 ## Train the LDC with knowledge-distillation
-After getting the training data, we train a series of LDCs by considering the conformal prediction value and MSE. Still take the Mountain car as an example, given the "name_training_data.npy", beginning initial state1, end initial state1, beginning initial state2, end initial state2, it will train multiple LDCs and saved as txt files.
+After getting the training data, we train a series of LDCs by considering the conformal prediction value and MSE. Still take the Mountain car as an example, given the "name_training_data.npy", beginning initial state1, end initial state1, beginning initial state2, end initial state2, it will train multiple LDCs that are saved as txt files.
 
 ```bash
 python MC_LDC_traing/train_test_LDC.py "training_data_10000.npy" -0.6 -0.4 0.01 0.05
 ```
 
 ## Calculate the action- and trajectory-based discrepancy
+We apply the conformal prediction to calculate the statistical bound for actions and trajectories. Given the LDC, HDC, initial set, and sample points, we can get the conformal bound by simply picking up the quantile. For instance,
 
+```bash
+python MC_CP/new_action_based_MC_LDC.py LDC1.txt trained_HDC_cnn_model.h5 60 -0.6 -0.4 0.01 0.05
+```
 
 ## Reachability analysis in POLAR
+Once we trained all the LDCs and the statistical discrepancy, we ran the reachability analysis on these LDCs with these bounds.
+
+## Confusion matrix calculation
 
 
 ## Miscellaneous test 
