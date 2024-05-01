@@ -68,8 +68,5 @@ One safe and unsafe verification results are displayed below.
 
 
 ## Confusion matrix calculation
-Combining the results from the POLAR and the groud truth from the first step, we can get the confusion matrix for true positive rate, false negative rate...
+Combining the results from the POLAR and the groud truth from the first step, we can get the confusion matrix for true positive rate, false negative rate, precision to check our theory and compare different methods.
 
-## Miscellaneous test 
-1. Train the LDC first and gather the training data (also contains the ground truth for safety verification) in the three py files, “Mountain_car_simulaiton.py, Train_HDC.py, train_test_LDC.py”. For the first training, we only aim to decrease the MSE as much as we can. If there is a high overapproximation error in the verification before inflation, we switch to the verification-oriented KD method to retrain the LDC by balancing the MSE and Lipschitz constants. “https://github.com/JmfanBU/ReachNNStar/tree/master/VF_retraining”
-2. After getting the action-based discrepancy, we try to inflate the interval in the Taylor model in POLAR. Concerning the trajectory-based discrepancy, we extracted the reachable tube (a sequence of polygons) and inflate it with the trajectory-based discrepancy. With respect to the action-based discrepancy, we inflate the interval by action-based discrepancy from the Taylor model. This process involves inserting the CP table, picking up the correct CP value in different initial set or state space, and so on. 
