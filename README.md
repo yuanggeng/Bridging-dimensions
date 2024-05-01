@@ -22,7 +22,11 @@ python MC_LDC_traing/MC_training_data.py 10000 60 -0.6 -0.4 0.01 0.05
 ```
 
 ## Train the LDC with knowledge-distillation
+After getting the training data, we train a series of LDCs by considering the conformal prediction value and MSE. Still take the Mountain car as an example, given the "name_training_data.npy", beginning initial state1, end initial state1, beginning initial state2, end initial state2, it will train multiple LDCs and saved as txt files.
 
+```bash
+python MC_LDC_traing/train_test_LDC.py "training_data_10000.npy" -0.6 -0.4 0.01 0.05
+```
 
 ## Calculate the action- and trajectory-based discrepancy
 
