@@ -15,10 +15,10 @@ Note that we use gym 0.21.0 in the cart pole case and for others, we apply gym 0
 Regarding the reachability analysis, download the VirtualBox and run the code inside. Here is the link: https://www.dropbox.com/scl/fi/ki122ofypp1x0tmq5nunn/ReachNNStar-test-2.ova?rlkey=a0l7raqkvpa87jaw98ygr1mme&st=xstj3k0l&dl=0 
 
 ## Get ground truth data from HDC and training data for LDC
-For state-image one-to-one matched training datasets, we collect the images from env. render() and store the corresponding states in the env.env.state in each step function. Moreover, we add the zero-mean Gaussian noise onto the state information for the noise-mapping training data set. 
+For state-image one-to-one matched training datasets, we collect the images from env. render() and store the corresponding states in the env.env.state in each step function. Moreover, we add the zero-mean Gaussian noise onto the state information for the noise-mapping training data set. For example, the arguments are number of data, steps, initial state1 begin, initial state1 end, initial state2 begin, initial state2 end.   
 
-```python
-pip install -r requirements.txt
+```bash
+python MC_training_data.py 10000 60 -0.6 -0.4 0.01 0.05
 ```
 
 ## Train the LDC with knowledge-distillation
