@@ -7,7 +7,9 @@ Here are the codes for the paper "Bridging dimensions: confident reachability fo
 5. Three environments contain the continuous control action space and images as input 
 
 ## Prerequisites
-```pip install -r requirements.txt```
+```python
+pip install -r requirements.txt
+```
 
 Note that we use gym 0.21.0 in the cart pole case and for others, we apply gym 0.22.0. 
 
