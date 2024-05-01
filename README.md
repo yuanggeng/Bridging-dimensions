@@ -67,6 +67,6 @@ One safe and unsafe verification results are displayed below.
 <img src="/MC_after_POLAR/2Failed_verificaiton_plot.png" alt="alt text" width="300" height="200"/>
 
 
-## Confusion matrix calculation
+## verification results
 Combining the results from the POLAR and the groud truth from the first step, we can get the confusion matrix for true positive rate, false negative rate, precision to check our theory and compare different methods.
 
