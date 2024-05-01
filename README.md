@@ -64,6 +64,9 @@ make mountain_car && ./mountain_car 0.01 60 4 6 1
 Where 0.01 is the width of the initial set, 60 is the total steps that need to be verified, 4 is the order of Bernstein Polynomial, 6 is the order of the Taylor Model.
 One safe and unsafe verification results are displayed below.
 <img src="/MC_after_POLAR/2Successful_verificaiton_plot.png" alt="alt text" width="300" height="200"/>
+
+
+
 <img src="/MC_after_POLAR/2Failed_verificaiton_plot.png" alt="alt text" width="300" height="200"/>
 
 
