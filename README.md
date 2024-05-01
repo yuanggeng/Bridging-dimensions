@@ -18,7 +18,7 @@ Regarding the reachability analysis, download the VirtualBox and run the code in
 For state-image one-to-one matched training datasets, we collect the images from env. render() and store the corresponding states in the env.env.state in each step function. Moreover, we add the zero-mean Gaussian noise onto the state information for the noise-mapping training data set. For example, the arguments are number of data, steps, initial state1 begin, initial state1 end, initial state2 begin, initial state2 end.   
 
 ```bash
-python MC_training_data.py 10000 60 -0.6 -0.4 0.01 0.05
+python MC_LDC_traing/MC_training_data.py 10000 60 -0.6 -0.4 0.01 0.05
 ```
 
 ## Train the LDC with knowledge-distillation
