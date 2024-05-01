@@ -57,10 +57,15 @@ python MC_CP/new_action_based_MC_LDC.py LDC1.txt trained_HDC_cnn_model.h5 60 -0.
 ```
 
 ## Reachability analysis in POLAR
-Once we trained all the LDCs and the statistical discrepancy, we ran the reachability analysis on these LDCs with these bounds.
+Once we trained all the LDCs and the statistical discrepancy, we ran the reachability analysis on these LDCs with these bounds. Take the Mountain car as an example,
+```python
+make mountain_car && ./mountain_car 0.01 60 4 6 1
+```
+Where 0.01 is the width of the initial set, 60 is the total steps that need to be verified, 4 is the order of Bernstein Polynomial, 6 is the order of the Taylor Model.
+One safe and unsafe verification results are displayed below.
 
 ## Confusion matrix calculation
-
+Combining the results from the POLAR and the groud truth from the first step, we can get the confusion matrix for true positive rate, false negative rate...
 
 ## Miscellaneous test 
 1. Train the LDC first and gather the training data (also contains the ground truth for safety verification) in the three py files, “Mountain_car_simulaiton.py, Train_HDC.py, train_test_LDC.py”. For the first training, we only aim to decrease the MSE as much as we can. If there is a high overapproximation error in the verification before inflation, we switch to the verification-oriented KD method to retrain the LDC by balancing the MSE and Lipschitz constants. “https://github.com/JmfanBU/ReachNNStar/tree/master/VF_retraining”
