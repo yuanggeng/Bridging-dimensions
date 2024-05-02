@@ -68,5 +68,7 @@ One safe and unsafe verification results are displayed below.
 
 
 ## verification results
-Combining the results from the POLAR and the groud truth from the first step, we can get the confusion matrix for true positive rate, false negative rate, precision to check our theory and compare different methods.
+Considering the results from the POLAR and the ground truth from the first step, we can get the confusion matrix for true positive rate, false negative rate, and precision to check our theory and compare different methods.
 
+## Contribution
+[Yuang Geng](https://github.com/yuanggeng), Jake Baldauf, [Souradeep Dutta](https://github.com/souradeep-111), [Chao Huang](https://github.com/ChaoHuang2018), and [Ivan Ruchkin](https://github.com/bisc)
