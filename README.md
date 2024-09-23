@@ -28,6 +28,10 @@ Compile flow star:
 cd flowstar/flowstar-toolbox
 make
 ```
+Download the POLAR Toolbox:
+```python
+git clone https://github.com/chenxin415/flowstar.git
+```
 Compile POLAR:
 ```python
 cd POLAR
