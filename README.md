@@ -28,7 +28,7 @@ Compile flow star:
 cd flowstar/flowstar-toolbox
 make
 ```
-Complie POALR:
+Compile POLAR:
 ```python
 cd POLAR
 make
