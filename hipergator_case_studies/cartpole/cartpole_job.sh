@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name=pendulum_parallel    # Job name
+#SBATCH --job-name=cartpole_parallel    # Job name
 #SBATCH --output=batch_%A_%a_output.log # Output log for each array job (%A is job ID, %a is array task ID)
 #SBATCH --error=batch_%A_%a_error.log   # Error log for each array job
 #SBATCH --ntasks=10                     # 10 tasks per batch
@@ -11,7 +11,7 @@
 #SBATCH --mem=5gb                       # Memory per task
 #SBATCH --array=0-9                     # Array job with 10 batches
 # Email notifications
-#SBATCH --mail-user=sundaran.sukanth@ufl.edu    
+#SBATCH --mail-user=manning.chen@ufl.edu    
 #SBATCH --mail-type=ALL               
 
 # Load necessary modules
@@ -19,7 +19,7 @@ module load python/3.10
 module load libgmp/6.1.2 gsl/2.6 libmpfr/3.1.1 glpk
 export LD_LIBRARY_PATH=/apps/gsl/2.6/lib:$LD_LIBRARY_PATH
 
-cd /home/sundaran.sukanth/cartpole
+cd "$(dirname "$0")"
 
 # Generate sub-square coordinates using the Python script
 sub_squares=$(python generate_subsquares.py)
