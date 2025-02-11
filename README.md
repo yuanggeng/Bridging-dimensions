@@ -2,7 +2,7 @@
 Here are the codes for the paper "Bridging dimensions: confident reachability for high-dimensional controllers". This repository contains the following contents:
 1. The low-dimensional controller training code with naive-splitting
 2. Calculating the action-based and trajectory-based conformal prediction discrepancy.
-3. Rivsed POLAR code to apply reachability analysis with different discrepancies.
+3. Revised POLAR code to apply reachability analysis with different discrepancies.
 4. Well-trained low-dimensional controllers saved as a text file.
 5. Three environments contain the continuous control action space and images as input 
 
@@ -12,7 +12,7 @@ pip install -r requirements.txt
 ```
 Note that we use gym 0.21.0 in the cart pole case and for others, we apply gym 0.22.0. 
 
-Regarding the reachability analysis, download the our VirtualBox with all dependencies. Here is the link: https://www.dropbox.com/scl/fi/ki122ofypp1x0tmq5nunn/ReachNNStar-test-2.ova?rlkey=a0l7raqkvpa87jaw98ygr1mme&st=xstj3k0l&dl=0 
+Regarding the reachability analysis, download our VirtualBox with all dependencies. Here is the link: https://www.dropbox.com/scl/fi/ki122ofypp1x0tmq5nunn/ReachNNStar-test-2.ova?rlkey=a0l7raqkvpa87jaw98ygr1mme&st=xstj3k0l&dl=0 
 
 Otherwise, you can also download the dependency by yourself. System Requirements: Ubuntu 18.04, MATLAB 2016a or later
 Install dependencies through apt-get install
