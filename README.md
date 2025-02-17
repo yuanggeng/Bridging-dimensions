@@ -1,5 +1,5 @@
 # Bridging dimensions: confident reachability for high-dimensional controllers
-Here are the codes for the paper "Bridging dimensions: confident reachability for high-dimensional controllers". This repository contains the following contents:
+This repository contains the source codes for the paper "Bridging dimensions: confident reachability for high-dimensional controllers". This repository contains the following contents:
 1. The low-dimensional controller training code with naive-splitting
 2. Calculating the action-based and trajectory-based conformal prediction discrepancy.
 3. Revised POLAR code to apply reachability analysis with different discrepancies.
