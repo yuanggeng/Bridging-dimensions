@@ -65,7 +65,7 @@ Once we trained all the LDCs and the statistical discrepancy, we ran the reachab
 ```python
 make mountain_car && ./mountain_car 0.01 60 4 6 1
 ```
-Where 0.01 is the width of the initial set, 60 is the total steps that need to be verified, 4 is the order of Bernstein Polynomial, 6 is the order of the Taylor Model.
+Where 0.01 is the width of the initial set, 60 is the total steps that need to be verified, 4 is the order of the Bernstein Polynomial, 6 is the order of the Taylor Model.
 One safe and unsafe verification results are displayed below.
 <img src="/MC_after_POLAR/2Successful_verificaiton_plot.png" alt="alt text" width="300" height="200"/>
 <img src="/MC_after_POLAR/2Failed_verificaiton_plot.png" alt="alt text" width="300" height="200"/>
@@ -74,5 +74,8 @@ One safe and unsafe verification results are displayed below.
 ## Verification results
 Considering the results from the POLAR and the ground truth from the first step, we can get the confusion matrix for true positive rate, false negative rate, and precision to check our theory and compare different methods.
 
-## Contribution
-[Yuang Geng](https://github.com/yuanggeng), Jake Brandon Baldauf, [Souradeep Dutta](https://github.com/souradeep-111), [Chao Huang](https://github.com/ChaoHuang2018), and [Ivan Ruchkin](https://github.com/bisc)
+## Contributors
+[Yuang Geng](https://github.com/yuanggeng), Sukanth Sundaran, Jake Brandon Baldauf, [Souradeep Dutta](https://github.com/souradeep-111), [Chao Huang](https://github.com/ChaoHuang2018), Steven Drager, and [Ivan Ruchkin](https://github.com/bisc)
+
+## Acknowledgements
+This work was supported in part by the NSF Grant CCF-2403616, ARO MURI W911NF-20-1-0080, Air Force under PIA FA8750-19-3-1000, and grant EP/Y002644/1 under the EPSRC ECR International Collaboration Grants program, funded by the International Science Partnerships Fund (ISPF) and the UK Research and Innovation. Any opinions, findings, conclusions, or recommendations expressed in this material are those of the authors and do not necessarily reflect the views of the National Science Foundation (NSF), Army Research Office (ARO), Air Force, the Department of Defense, or the United States Government.
