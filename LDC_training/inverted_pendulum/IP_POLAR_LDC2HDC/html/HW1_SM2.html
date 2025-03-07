@@ -1,0 +1,176 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>HW1_SM2</title><meta name="generator" content="MATLAB 9.12"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2024-01-19"><meta name="DC.source" content="HW1_SM2.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeinput"><span class="comment">%hw1</span>
+<span class="comment">%Problem3 (a)</span>
+<span class="comment">% Number of samples</span>
+N = 10^4;
+
+<span class="comment">%PartA</span>
+N = 10^4;
+<span class="comment">% Initialize X0</span>
+X0 = 0;
+
+<span class="comment">% Generate N samples from a Laplace distribution centered at 0</span>
+b = 1; <span class="comment">% Scale parameter for Laplace distribution</span>
+X_rest = laprnd(N-1, 1, 0, b);
+Xk = [X0;X_rest];
+
+<span class="comment">% Calculate mean and variance</span>
+mean_Xk = mean(Xk);
+var_Xk = var(Xk);
+disp([<span class="string">'Mean of Xk for partA: '</span>, num2str(mean_Xk)]);
+disp([<span class="string">'Variance of Xk for partA: '</span>, num2str(var_Xk)]);
+
+<span class="comment">%draw the histogram</span>
+figure
+subplot(2,1,1)
+histogram(Xk, 1000)
+title(<span class="string">'A: Laplace distribution with X0=0'</span>)
+
+<span class="comment">%Part B</span>
+<span class="comment">% Initialize X0</span>
+<span class="comment">% Generate N samples from a Laplace distribution centered at 0</span>
+b = 1; <span class="comment">% Scale parameter for Laplace distribution</span>
+Xk = laprnd(N, 1, 0, b);
+
+<span class="comment">% Calculate mean and variance</span>
+mean_Xk = mean(Xk);
+var_Xk = var(Xk);
+disp([<span class="string">'Mean of Xk for PartB: '</span>, num2str(mean_Xk)]);
+disp([<span class="string">'Variance of Xk for PartB: '</span>, num2str(var_Xk)]);
+
+<span class="comment">%draw the histogram</span>
+subplot(2,1,2)
+histogram(Xk, 1000)
+title(<span class="string">'B:Laplace distribution with X0!=0'</span>)
+<span class="keyword">function</span> samples = laprnd(N, M, mu, b)
+    <span class="comment">% Generate N x M Laplace-distributed random samples</span>
+    <span class="comment">% with mean mu and scale parameter b</span>
+    u = rand(N, M) - 0.5;
+    samples = mu - b * sign(u) .* log(1 - 2 * abs(u));
+<span class="keyword">end</span>
+</pre><pre class="codeoutput">Mean of Xk for partA: 0.002218
+Variance of Xk for partA: 2.0164
+Mean of Xk for PartB: -0.026548
+Variance of Xk for PartB: 2.0524
+</pre><img vspace="5" hspace="5" src="HW1_SM2_01.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2022a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%hw1
+%Problem3 (a)
+% Number of samples
+N = 10^4;
+
+%PartA
+N = 10^4;
+% Initialize X0
+X0 = 0;
+
+% Generate N samples from a Laplace distribution centered at 0
+b = 1; % Scale parameter for Laplace distribution
+X_rest = laprnd(N-1, 1, 0, b);
+Xk = [X0;X_rest];
+
+% Calculate mean and variance
+mean_Xk = mean(Xk);
+var_Xk = var(Xk);
+disp(['Mean of Xk for partA: ', num2str(mean_Xk)]);
+disp(['Variance of Xk for partA: ', num2str(var_Xk)]);
+
+%draw the histogram
+figure
+subplot(2,1,1)
+histogram(Xk, 1000)
+title('A: Laplace distribution with X0=0')
+
+%Part B
+% Initialize X0
+% Generate N samples from a Laplace distribution centered at 0
+b = 1; % Scale parameter for Laplace distribution
+Xk = laprnd(N, 1, 0, b);
+
+% Calculate mean and variance
+mean_Xk = mean(Xk);
+var_Xk = var(Xk);
+disp(['Mean of Xk for PartB: ', num2str(mean_Xk)]);
+disp(['Variance of Xk for PartB: ', num2str(var_Xk)]);
+
+%draw the histogram
+subplot(2,1,2)
+histogram(Xk, 1000)
+title('B:Laplace distribution with X0!=0')
+function samples = laprnd(N, M, mu, b)
+    % Generate N x M Laplace-distributed random samples
+    % with mean mu and scale parameter b
+    u = rand(N, M) - 0.5;
+    samples = mu - b * sign(u) .* log(1 - 2 * abs(u));
+end
+
+##### SOURCE END #####
+--></body></html>
