@@ -1,10 +1,11 @@
-# Bridging dimensions: confident reachability for high-dimensional controllers
-This repository contains the source codes for the paper "Bridging dimensions: confident reachability for high-dimensional controllers". This repository contains the following contents:
-1. The low-dimensional controller training code with naive-splitting
-2. Calculating the action-based and trajectory-based conformal prediction discrepancy.
-3. Revised POLAR code to apply reachability analysis with different discrepancies.
-4. Well-trained low-dimensional controllers saved as a text file.
-5. Three environments contain the continuous control action space and images as input 
+# High-dimensional reachability toolbox
+This repository contains the source code for a toolbox that implements high-confidence reachability analysis of closed-loop systems with image-based neural network controllers. It also works for any other controllers with a high-dimensional input space. This repository implements the paper "Bridging dimensions: confident reachability for high-dimensional controllers" (https://arxiv.org/abs/2311.04843) and its extensions. 
+
+This repository contains the following contents:
+1. The low-dimensional controller training code (and examples of trained low-dimensional controllers)
+2. Calculation of conformal prediction discrepancies
+3. Updated POLAR code to apply reachability analysis with statistical discrepancies
+4. The above applied to three experimental environments with images and continuous control actions
 
 ## Prerequisites
 ```python
