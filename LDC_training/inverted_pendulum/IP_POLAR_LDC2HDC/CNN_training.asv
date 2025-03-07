@@ -1,0 +1,98 @@
+% Load your training data
+clear
+training_data = load('/Users/yuang/Documents/MATLAB/IP_POLAR_LDC2HDC/LDC-HDC_training_data.mat');
+training_data = training_data.training_data;
+
+
+% Extract and reformat data
+num_samples = size(training_data, 1);
+
+input_images = zeros(50, 50, 1, num_samples);
+input_scalars = zeros(1, num_samples);
+target_data = zeros(1, num_samples);
+
+for i = 1:num_samples
+    input_images(:, :,1, i) = training_data{i, 1};
+    input_scalars(i) = training_data{i, 2};
+    target_data(i) = training_data{i, 3};
+end
+
+%% build our own model
+% Image input layers
+% Image Input Layers
+imgInput = imageInputLayer([50 50 1], 'Name', 'imgInput');
+convLayer = convolution2dLayer(3, 8, 'Padding', 'same', 'Name', 'conv');
+myReluLayer = reluLayer('Name', 'relu');
+flattenLayer = flattenLayer('Name', 'flatten');
+
+% Scalar Input Layer
+scalarInput = featureInputLayer(1, 'Normalization', 'none', 'Name', 'scalarInput');
+
+% Fully Connected Layer before Concatenation
+fcLayer1 = fullyConnectedLayer(20, 'Name', 'fc1'); % adjust the size as needed
+
+% Concatenation Layer
+concatLayer = concatenationLayer(1, 2, 'Name', 'concat');
+
+% Further Layers
+fcLayer2 = fullyConnectedLayer(1, 'Name', 'fc2'); % adjust the size as needed
+regressionLayer = regressionLayer('Name', 'regression');
+
+% Create Layer Graph
+layers = layerGraph();
+layers = addLayers(layers, [imgInput; convLayer; myReluLayer; flattenLayer; fcLayer1]);
+layers = addLayers(layers, scalarInput);
+layers = addLayers(layers, [concatLayer; fcLayer2; regressionLayer]);
+
+% Connect Layers
+layers = connectLayers(layers, 'fc1', 'concat/in1');
+layers = connectLayers(layers, 'scalarInput', 'concat/in2');
+
+plot(layers)
+
+%% start training
+options = trainingOptions('sgdm');  % Define your training options
+net = trainNetwork({input_images, input_scalars}, target_data', layers, options);
+
+arraySize = size(input_images)
+arraySize = size(input_images')
+
+
+%%  build only image-based CNN
+% % Image input layers
+% % Image Input Layers
+% imgInput = imageInputLayer([50 50 1], 'Name', 'imgInput');
+% convLayer = convolution2dLayer(3, 8, 'Padding', 'same', 'Name', 'conv');
+% myReluLayer = reluLayer('Name', 'relu');
+% flattenLayer = flattenLayer('Name', 'flatten');
+% 
+% % Scalar Input Layer
+% %scalarInput = featureInputLayer(1, 'Normalization', 'none', 'Name', 'scalarInput');
+% 
+% % Fully Connected Layer before Concatenation
+% fcLayer1 = fullyConnectedLayer(20, 'Name', 'fc1'); % adjust the size as needed
+% 
+% % Concatenation Layer
+% concatLayer = concatenationLayer(1, 2, 'Name', 'concat');
+% 
+% % Further Layers
+% fcLayer2 = fullyConnectedLayer(1, 'Name', 'fc2'); % adjust the size as needed
+% regressionLayer = regressionLayer('Name', 'regression');
+% 
+% % Create Layer Graph
+% layers = layerGraph();
+% layers = addLayers(layers, [imgInput; convLayer; myReluLayer; flattenLayer; fcLayer1;fcLayer2;regressionLayer]);
+% %layers = addLayers(layers, scalarInput);
+% %layers = addLayers(layers, [concatLayer; fcLayer2; regressionLayer]);
+% 
+% % Connect Layers
+% %layers = connectLayers(layers, 'fc1', 'concat/in1');
+% %layers = connectLayers(layers, 'scalarInput', 'concat/in2');
+% 
+% plot(layers)
+% 
+% %% start training
+% options = trainingOptions('sgdm');  % Define your training options
+% % net = trainNetwork({input_images, input_scalars}, target_data, layers, options);
+% net = trainNetwork(input_images, target_data', layers, options);
+
